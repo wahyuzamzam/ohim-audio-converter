@@ -1,0 +1,17 @@
+{
+  "name": "ohim-audio-converter",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Audio speed converter dan Roblox Open Cloud uploader",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "multer": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
