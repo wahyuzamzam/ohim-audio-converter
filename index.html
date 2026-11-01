@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Ohim Audio Converter</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="audio.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div>
+        <h1>🎧 Ohim Audio</h1>
+        <p>Audio converter & Roblox uploader</p>
+      </div>
+
+      <span class="badge">Mode publik</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>1. Pilih sumber audio</h2>
+
+      <div class="tabs">
+        <button
+          id="fileTab"
+          class="tab active"
+          type="button"
+        >
+          File musik
+        </button>
+
+        <button
+          id="linkTab"
+          class="tab"
+          type="button"
+        >
+          Link YouTube
+        </button>
+      </div>
+
+      <div id="fileSection">
+        <label for="audioFile">Pilih file audio</label>
+
+        <input
+          id="audioFile"
+          type="file"
+          accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac,.webm"
+        >
+
+        <p class="hint">
+          Maksimal 50 MB. Dukungan format bergantung pada browser.
+        </p>
+      </div>
+
+      <div id="linkSection" class="hidden">
+        <label for="youtubeUrl">Link video YouTube</label>
+
+        <input
+          id="youtubeUrl"
+          type="url"
+          placeholder="https://www.youtube.com/watch?v=..."
+        >
+
+        <p class="hint">
+          Gunakan hanya video yang Anda berhak unduh dan proses.
+          Video pribadi atau yang dibatasi mungkin tidak dapat diambil.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2. Atur kecepatan</h2>
+
+      <div class="speed-heading">
+        <label for="speed">Kecepatan audio</label>
+        <strong id="speedText">1.00x</strong>
+      </div>
+
+      <input
+        id="speed"
+        type="range"
+        min="0.5"
+        max="2"
+        step="0.05"
+        value="1"
+      >
+
+      <div class="range-labels">
+        <span>0.5x</span>
+        <span>1.0x</span>
+        <span>2.0x</span>
+      </div>
+
+      <div class="presets">
+        <button type="button" data-speed="0.75">0.75x</button>
+        <button type="button" data-speed="1">1.0x</button>
+        <button type="button" data-speed="1.25">1.25x</button>
+        <button type="button" data-speed="1.5">1.5x</button>
+      </div>
+
+      <div class="notice">
+        <strong>Roblox PlaybackSpeed</strong>
+
+        <p id="recommendation"></p>
+      </div>
+
+      <button id="convertBtn" class="primary" type="button">
+        Convert audio
+      </button>
+
+      <p id="convertStatus" class="status" aria-live="polite"></p>
+
+      <div id="result" class="result hidden">
+        <h3>Hasil konversi</h3>
+
+        <p id="resultInfo"></p>
+
+        <audio id="preview" controls></audio>
+
+        <a id="downloadLink" class="button-link" download>
+          Unduh WAV
+        </a>
+
+        <p class="hint">
+          WAV bisa berukuran besar. Untuk upload Roblox pada aplikasi
+          ini, ukuran hasil dibatasi 20 MB.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3. Upload ke Roblox</h2>
+
+      <p class="hint">
+        Hanya masukkan API key jika Anda mempercayai pemilik dan
+        server website ini. API key dikirim ke backend agar backend
+        dapat meneruskannya ke Roblox.
+      </p>
+
+      <label for="creatorType">Pemilik aset</label>
+
+      <select id="creatorType">
+        <option value="user">Akun pribadi</option>
+        <option value="group">Grup</option>
+      </select>
+
+      <label for="creatorId">User ID atau Group ID</label>
+
+      <input
+        id="creatorId"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="Contoh: 123456789"
+      >
+
+      <label for="apiKey">Roblox Open Cloud API Key</label>
+
+      <input
+        id="apiKey"
+        type="password"
+        autocomplete="off"
+        placeholder="Tempel API key Roblox"
+      >
+
+      <label for="assetName">Nama aset</label>
+
+      <input
+        id="assetName"
+        type="text"
+        maxlength="50"
+        value="Ohim Audio"
+      >
+
+      <button id="uploadBtn" class="success" type="button">
+        Upload ke Roblox
+      </button>
+
+      <p id="uploadStatus" class="status" aria-live="polite"></p>
+
+      <button
+        id="checkOperationBtn"
+        class="secondary hidden"
+        type="button"
+      >
+        Periksa status upload
+      </button>
+
+      <div id="assetResult" class="result hidden">
+        <p>Asset ID:</p>
+        <code id="assetIdText"></code>
+      </div>
+
+      <p class="hint">
+        Buat API key melalui
+        <a
+          href="https://create.roblox.com/dashboard/credentials"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Roblox Creator Dashboard
+        </a>.
+        Berikan izin yang diperlukan dan batasi akses IP server jika
+        memungkinkan. Jangan bagikan API key Anda kepada orang lain.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    Ohim Audio Converter.
+  </footer>
+</body>
+</html>
